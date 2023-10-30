@@ -1,23 +1,23 @@
-using Godot;
 using System;
+using Godot;
 using GodotRx;
 
 namespace Tests
 {
-  public class ToggleButton : Button
-  {
-    public override void _Ready()
+    public partial class ToggleButton : Button
     {
-      this.OnToggled()
-        .Subscribe(_ => UpdateText())
-        .DisposeWith(this);
+        public override void _Ready()
+        {
+            this.OnToggled()
+                .Subscribe(_ => UpdateText())
+                .DisposeWith(this);
 
-      UpdateText();
-    }
+            UpdateText();
+        }
 
-    private void UpdateText()
-    {
-      Text = Pressed ? "YES" : "NO";
+        private void UpdateText()
+        {
+            Text = ButtonPressed ? "YES" : "NO";
+        }
     }
-  }
 }
